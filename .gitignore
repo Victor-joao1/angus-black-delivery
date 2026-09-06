@@ -1,0 +1,15 @@
+# Dependências e Builds
+node_modules/
+.next/
+out/
+build/
+
+# Configurações de Ambiente e Chaves (Segurança)
+.env
+.env*.local
+*.pem
+
+# Arquivos de Sistema e Log
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
