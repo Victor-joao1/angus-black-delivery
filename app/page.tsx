@@ -9,6 +9,7 @@ import Cart, { CartItem } from "@/components/Cart";
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [mobileCartOpen, setMobileCartOpen] = useState(false);
 
   const visibleProducts = useMemo(
     () => products.filter((p) => p.category === activeCategory),
@@ -41,11 +42,20 @@ export default function Home() {
     );
   }
 
+  const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
+  const cartTotal = cart.reduce( (sum, i) => sum + i.product.price * i.qty, 0 );
+  function formatPrice(value: number) { return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", }); }
+  
   return (
     <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6">
       <header className="mb-10 flex flex-col items-center gap-3 text-center">
         <div className="relative h-24 w-24 overflow-hidden rounded-full border-2 border-gold shadow-[0_0_25px_rgba(212,160,23,0.25)]">
-          <Image src="/logo.png" alt={storeInfo.name} fill className="object-cover" />
+          <Image
+            src="/logo.png"
+            alt={storeInfo.name}
+            fill
+            className="object-cover"
+          />
         </div>
         <h1 className="font-display text-4xl tracking-wide text-cream sm:text-5xl">
           {storeInfo.name}
@@ -57,7 +67,6 @@ export default function Home() {
           {storeInfo.minOrder.toFixed(2).replace(".", ",")}
         </p>
       </header>
-
       <nav className="mb-8 flex flex-wrap justify-center gap-2">
         {categories.map((cat) => (
           <button
@@ -73,7 +82,6 @@ export default function Home() {
           </button>
         ))}
       </nav>
-
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_320px]">
         <section className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {visibleProducts.map((product) => (
@@ -81,7 +89,7 @@ export default function Home() {
           ))}
         </section>
 
-        <aside>
+        <aside className="hidden lg:block">
           <Cart
             items={cart}
             onIncrease={increase}
@@ -90,9 +98,51 @@ export default function Home() {
           />
         </aside>
       </div>
-
+      {cartCount > 0 && (
+        <button
+          onClick={() => setMobileCartOpen(true)}
+          className="fixed inset-x-4 bottom-4 z-30 flex items-center justify-between rounded-sm bg-gold px-5 py-3 text-sm font-semibold text-char shadow-lg lg:hidden"
+        >
+          {" "}
+          <span>
+            {cartCount} {cartCount === 1 ? "item" : "itens"}
+          </span>{" "}
+          <span>{formatPrice(cartTotal)} · Ver pedido</span>{" "}
+        </button>
+      )}{" "}
+      {mobileCartOpen && (
+        <div
+          className="fixed inset-0 z-40 flex items-end bg-black/70 lg:hidden"
+          onClick={() => setMobileCartOpen(false)}
+        >
+          {" "}
+          <div
+            className="max-h-[85vh] w-full overflow-y-auto rounded-t-lg bg-char p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {" "}
+            <div className="mb-2 flex justify-end">
+              {" "}
+              <button
+                onClick={() => setMobileCartOpen(false)}
+                className="text-cream/60"
+              >
+                {" "}
+                Fechar ✕{" "}
+              </button>{" "}
+            </div>{" "}
+            <Cart
+              items={cart}
+              onIncrease={increase}
+              onDecrease={decrease}
+              onClear={() => setCart([])}
+            />{" "}
+          </div>{" "}
+        </div>
+      )}
       <footer className="mt-16 text-center text-xs text-cream/30">
-        {storeInfo.name} · {storeInfo.address} · WhatsApp {storeInfo.whatsappDisplay}
+        {storeInfo.name} · {storeInfo.address} · WhatsApp{" "}
+        {storeInfo.whatsappDisplay}
       </footer>
     </main>
   );

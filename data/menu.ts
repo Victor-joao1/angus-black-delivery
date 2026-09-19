@@ -18,7 +18,7 @@ export const products: Product[] = [
     price: 27.9,
     category: "hamburgueres",
     tag: "Mais Pedido",
-    image: "/products/black-cheese.png",
+    image: "/products/black-cheese.jpg",
   },
   {
     id: "angus-classic",
@@ -27,7 +27,7 @@ export const products: Product[] = [
       "Pão brioche, blend Angus 160g, queijo duplo, cebola roxa, tomate, alface fresca e molho Angus Black Especial.",
     price: 31.9,
     category: "hamburgueres",
-    image: "/products/angus-classic.png",
+    image: "/products/angus-classic.jpg",
   },
   {
     id: "brasa-prime",
@@ -36,7 +36,7 @@ export const products: Product[] = [
       "Pão brioche, blend Angus 160g, queijo duplo, bacon crocante, cebola caramelizada e molho Angus Black Especial.",
     price: 35.9,
     category: "hamburgueres",
-    image: "/products/brasa-prime.png",
+    image: "/products/brasa-prime.jpg",
   },
   {
     id: "black-bacon",
@@ -45,7 +45,7 @@ export const products: Product[] = [
       "Pão brioche, blend Angus 160g, queijo duplo, bacon em tiras, alface e molho Angus Black Especial.",
     price: 33.9,
     category: "hamburgueres",
-    image: "/products/black-bacon.png",
+    image: "/products/black-bacon.jpg",
   },
   {
     id: "angus-bbq",
@@ -54,7 +54,7 @@ export const products: Product[] = [
       "Pão brioche, 2 blends Angus 160g, 4 fatias de queijo, anéis de cebola crocantes e barbecue defumado.",
     price: 45.9,
     category: "hamburgueres",
-    image: "/products/angus-bbq.png",
+    image: "/products/angus-bbq.jpg",
   },
   {
     id: "big-bull",
@@ -64,7 +64,7 @@ export const products: Product[] = [
     price: 52.9,
     category: "hamburgueres",
     tag: "Exclusivo",
-    image: "/products/big-bull.png",
+    image: "/products/big-bull.jpg",
   },
 
   // Combos Solo (Hambúrguer + Batata frita + Refrigerante lata 350ml)
@@ -74,7 +74,7 @@ export const products: Product[] = [
     description: "Black Cheese + batata frita + refrigerante lata 350ml.",
     price: 39.9,
     category: "combos",
-    image: "/products/black-cheese.png",
+    image: "/products/black-cheese.jpg",
   },
   {
     id: "combo-angus-classic",
@@ -82,7 +82,7 @@ export const products: Product[] = [
     description: "Angus Classic + batata frita + refrigerante lata 350ml.",
     price: 43.9,
     category: "combos",
-    image: "/products/angus-classic.png",
+    image: "/products/angus-classic.jpg",
   },
   {
     id: "combo-brasa-prime",
@@ -90,7 +90,7 @@ export const products: Product[] = [
     description: "Brasa Prime + batata frita + refrigerante lata 350ml.",
     price: 47.9,
     category: "combos",
-    image: "/products/brasa-prime.png",
+    image: "/products/brasa-prime.jpg",
   },
   {
     id: "combo-black-bacon",
@@ -98,7 +98,7 @@ export const products: Product[] = [
     description: "Black Bacon + batata frita + refrigerante lata 350ml.",
     price: 45.9,
     category: "combos",
-    image: "/products/black-bacon.png",
+    image: "/products/black-bacon.jpg",
   },
   {
     id: "combo-angus-bbq",
@@ -106,7 +106,7 @@ export const products: Product[] = [
     description: "Angus BBQ + batata frita + refrigerante lata 350ml.",
     price: 56.9,
     category: "combos",
-    image: "/products/angus-bbq.png",
+    image: "/products/angus-bbq.jpg",
   },
   {
     id: "combo-big-bull",
@@ -114,7 +114,7 @@ export const products: Product[] = [
     description: "Big Bull + batata frita + refrigerante lata 350ml.",
     price: 63.9,
     category: "combos",
-    image: "/products/big-bull.png",
+    image: "/products/big-bull.jpg",
   },
 
   // Acompanhamentos
@@ -147,6 +147,7 @@ export const products: Product[] = [
     description: "Lata 350ml.",
     price: 8.0,
     category: "bebidas",
+    image: "/products/coca-zero.jpg",
   },
   {
     id: "guarana",
@@ -154,7 +155,16 @@ export const products: Product[] = [
     description: "Lata 350ml.",
     price: 8.0,
     category: "bebidas",
+    image: "/products/guarana_lata.jpg",
   },
+];
+
+export type DeliveryArea = { id: string; label: string; fee: number };
+export const deliveryAreas: DeliveryArea[] = [
+  { id: "jacone-saquarema", label: "Jaconé - Saquarema", fee: 5 },
+  { id: "jacone-marica", label: "Jaconé - Maricá", fee: 7 },
+  { id: "barra-nova", label: "Barra Nova", fee: 7 },
+  { id: "boqueirao", label: "Boqueirão", fee: 12 },
 ];
 
 export const categories: { id: Product["category"]; label: string }[] = [
@@ -167,10 +177,10 @@ export const categories: { id: Product["category"]; label: string }[] = [
 export const storeInfo = {
   name: "Angus Black",
   tagline: "Hamburgueria Artesanal",
-  slogan: "Fogo. Sabor. Excelência em cada detalhe.",
+  slogan: "Carne de verdade. Fogo. Sabor.",
   address: "Jaconé, Saquarema - RJ",
   whatsapp: "5522999079734",
   whatsappDisplay: "(22) 99907-9734",
   minOrder: 20,
-  openingNote: "Aberto domingo a partir das 18h",
+  openingNote: "Aberto todos os dias das 18h às 23:59h",
 };

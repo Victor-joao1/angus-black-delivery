@@ -13,8 +13,8 @@ const config: Config = {
         cream: "#f0e6d2",
       },
       fontFamily: {
-        display: ["'Anton'", "sans-serif"],
-        body: ["'Barlow Condensed'", "sans-serif"],
+        display: ["'Bebas neue'", "sans-serif"],
+        body: ["'Montserrat'", "sans-serif"],
       },
     },
   },
